@@ -10,11 +10,13 @@ class PdfGenerator
 {
    private $data = array();
    private $generator = null;
+   private $config = null;
 
 
-   public function __construct($generator)
+   public function __construct($generator, $config)
    {
        $this->generator = $generator;
+       $this->config = $config;
    }
 
    public function readFile($file){
@@ -27,10 +29,14 @@ class PdfGenerator
    public function generatePdf(){
        foreach ($this->data as $date){
            $this->generator->AddPage();
-           $this->generator->SetFont('Arial','B',16);
-           $this->generator->Cell(40,10,$date[0]);
-           $this->generator->Cell(40,10,$date[1]);
-           $this->generator->Cell(40,10,$date[3]);
+           $this->generator->SetMargins(0, 0);
+           $this->generator->SetXY(0, 0);
+           $this->generator->SetAutoPageBreak(false, 0);
+           $this->generator->SetFont('Arial','',10);
+           $text = $date[0]."\n".$date[1]."\n".$date[3];
+           //MultiCell(float w, float h, string txt [, mixed border [, string align [, boolean fill]]])
+           $this->generator->MultiCell(57,2.5,$text, 1);
+
        }
        $this->generator->Output();
 
