@@ -30,12 +30,12 @@ class PdfGenerator
        foreach ($this->data as $date){
            $this->generator->AddPage();
            $this->generator->SetMargins(0, 0);
-           $this->generator->SetXY(0, 0);
+           $this->generator->SetXY(1, 2);
            $this->generator->SetAutoPageBreak(false, 0);
            $this->generator->SetFont('Arial','',10);
-           $text = $date[0]."\n".$date[1]."\n".$date[3];
+           $text = $date[0]."\n".$date[1]." ".$date[2]."\n".$date[3]." ".$date[4]."\n".$date[5]." ".$date[6]."\n\n".$date[7];
            //MultiCell(float w, float h, string txt [, mixed border [, string align [, boolean fill]]])
-           $this->generator->MultiCell(57,2.5,$text, 1);
+           $this->generator->MultiCell(56,4,$text, 0);
 
        }
        $this->generator->Output();
