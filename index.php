@@ -12,5 +12,5 @@ $PdfLib = new FPDF('L','mm',array($config['pageWidth'], $config['pageHeight']));
 require_once ('classes/PdfGenerator.php');
 
 $PdfGenerator = new PdfGenerator($PdfLib, $config);
-$PdfGenerator->readFile("test.csv");
+$PdfGenerator->readFile("test1.csv");
 $PdfGenerator->generatePdf();
